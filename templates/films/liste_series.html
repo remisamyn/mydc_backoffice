@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Visuel</th>
+                <th>Code</th>
+                <th>Titre VF</th>
+                <th>Titre VO</th>
+            </tr>
+        </thead>
+        {% for serie in series %}
+        <tr>
+            <td><img src="{% get_static_prefix %}{{ serie.visuel }}" width="100px"/></td>
+            <td>{{ serie.codeAyantDroit }}</td>
+            <td>{{ serie.titreVf }}</td>
+            <td>{{ serie.titreVo }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

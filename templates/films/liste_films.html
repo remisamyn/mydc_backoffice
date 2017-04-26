@@ -1,0 +1,74 @@
+{% load static %}
+
+{% for film in films %}
+<div class="media">
+  <a class="pull-left" href="{% url 'film' film.id %}">
+    <img class="media-object" src="{% get_static_prefix %}{{ film.visuel }}" alt="...">
+  </a>
+  <div class="media-body">
+    <h3 class="media-heading">{{ film.titreVf }} ({{ film.titreVo }})</h3>
+    <label>{% if film.realisateur %}De {{ film.realisateur }}, {% endif %}{% if film.paysProduction %} {{ film.paysProduction }}, {% endif %}{{ film.anneeProduction }}</label>
+    <div class="pull-right">{% for droit in film.droits.all %}{{ droit.nom }} {% endfor %}</div>
+    <div class="row">
+        <div class="col-sm-2 col-md-2"><span class="glyphicon glyphicon-time"></span> {{ film.duree }}</div>
+        <div class="col-sm-2 col-md-2">Ayant(s) Droits :
+                    {% for ayantDroit in film.ayantDroit.all %}
+                    {{ ayantDroit.diminutif }},
+                    {% endfor %}
+        </div>
+        <div class="col-sm-2 col-md-2">{{ film.genre }} / {{ film.sousGenre }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-md-10"><p>{{ film.synopsis }}</p></div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% if films.paginator.page_range|length > 1 %}
+<ul class="pagination">
+    {% if films.has_previous %}
+        <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
+    {% endif %}
+    {% for i in films.paginator.page_range %}
+        <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+    {% endfor %}
+
+    {% if films.has_next %}
+        <li><a href="?page={{ films.next_page_number }}">&raquo;</a></li>
+    {% endif %}
+</ul>
+{% endif %}
+
+{#<table class="table">#}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th>Visuel</th>#}
+{#            <th>Code</th>#}
+{#            <th>Titre VF</th>#}
+{#            <th>Titre VO</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{#    {% for film in films %}#}
+{#    <tr>#}
+{#        <td><img src="{% get_static_prefix %}{{ film.visuel }}" width="100px"/></td>#}
+{#        <td>{{ film.codeAyantDroit }}</td>#}
+{#        <td>{{ film.titreVf }}</td>#}
+{#        <td>{{ film.titreVo }}</td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+
+{#            {% for film in films %}#}
+{##}
+{#            <div class="col-sm-2 col-md-2">#}
+{#                <div class="thumbnail">#}
+{#                    <img src="{% get_static_prefix %}{{ film.visuel }}" width="100px"/>#}
+{#                    <div class="caption">#}
+{#                        <a href="{% url 'film' film.id %}" class="title">{{ film.titreVf }} ({{ film.titreVo }})</a>#}
+{#                        <p>{{ film.codeAyantDroit }}</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endfor %}#}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+{#    <div class="col-sm-2 col-md-2">#}
+{#        <div class=""></div>#}
+{#    </div>#}
+    <div class="col-sm-1 col-md-1">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">XXX</a></li>
+            <li><a href="#">XXX</a></li>
+            <li><a href="#">XXX</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-11 col-md-11">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-align-justify"></span></button>
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon glyphicon-picture"></span></button>
+        </div>
+        {% include 'films/liste_films.html' with films=films %}
+    </div>
+</div>
+
+
+{% endblock %}

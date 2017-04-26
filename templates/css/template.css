@@ -1,0 +1,34 @@
+body {
+    background: #f8f8f8;
+    /*background: #f8f8f8 url("../media/template/background2.jpg") no-repeat fixed center;*/
+    /*background-size: cover;*/
+    /*-webkit-background-size: cover;*/
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    width: 100%;
+
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    margin: 55px 0 0 0px;
+    min-height: 568px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 55px 0 0 0px;
+        padding: 0 30px;
+    }
+}
+
+
+/* SURCHARGE BOOTSRAP */
+
+.list-films .thumbnail .caption {
+    text-align: center;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+{% for catalogue in catalogues %}
+  <div class="col-sm-6 col-md-4">
+
+            <div class="thumbnail">
+                  <img data-src="holder.js/300x200" src="{% get_static_prefix %}{{ catalogue.visuel }}" alt="{{ catalogue.nom }}">
+                  <div class="caption">
+                    <h3>{{ catalogue.nom }}</h3>
+                    <p>...</p>
+                  <ul>
+                      {% for contenu in catalogue.contenus.all %}
+                        <li>{{ contenu.titreVf }}</li>
+                       {% endfor %}
+                  </ul>
+                    <p>
+                        <a href="{% url 'catalogue' catalogue.id %}" class="btn btn-primary" role="button">Consulter</a>
+                        <a href="#" class="btn btn-primary" role="button">Générer le pdf</a>
+                        <a href="#" class="btn btn-primary" role="button">Modifier</a>
+                        <a href="#" class="btn btn-danger" role="button">Supprimer</a></p>
+                  </div>
+            </div>
+
+
+  </div>
+{% endfor %}
+</div>
+
+
+{% endblock %}
